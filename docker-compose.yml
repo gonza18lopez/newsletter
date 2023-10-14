@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+  frontend:
+    build: ./frontend
+    command: bash -c "npm run dev"
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/var/www/html
+    networks:
+      - newsletter
+
+  backend:
+    build: ./backend
+    command: bash -c "npm run dev"
+    env_file:
+      - ./backend/.env
+    ports:
+      - "${SERVER_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/var/www/html
+    networks:
+      - newsletter
+    depends_on:
+      - database
+  
+  database:
+    image: mysql:8.1.0
+    env_file:
+      - ./backend/.env
+    restart: always
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - database:/var/lib/mysql
+
+networks:
+  newsletter:
+    name: newsletter
+    driver: bridge
+
+volumes:
+  database:
+    driver: local
