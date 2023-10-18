@@ -4,8 +4,7 @@
 submodules=("backend" "frontend")
 
 for submodule in "${submodules[@]}"; do
-  echo "Actualizando submódulo: $submodule"
-  (cd "$submodule" && git pull)
+  (git clone "https://github.com/gonza18lopez/newsletter-$submodule.git" $submodule)
   echo "Actualización de $submodule completada."
 done
 
