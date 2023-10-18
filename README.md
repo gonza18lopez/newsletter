@@ -27,4 +27,13 @@ Asegúrese de actualizar las variables de entorno según sea necesario en los ar
 docker compose up -d
 ```
 
+## Paso 4: Ejecutar seeder
+
+Este seed lo que hara será crear un usuario
+
+```bash
+docker exec -t <nombre_del_contenedor_backend> npm run db:seed
+```
+
 ¡Listo! Su proyecto está configurado y en funcionamiento.
+Podrá iniciar sesión en la ruta http://frontend-host:puerto/login con el usuario `admin@example.org` contraseña `password`.
