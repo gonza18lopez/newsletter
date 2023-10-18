@@ -2,7 +2,9 @@
 
 Siga estos pasos para configurar y ejecutar el proyecto.
 
-## Paso 1: Compilar el Proyecto
+## Paso 1: Descargar submodulos
+
+En este paso, el script `build.sh` se encaragá de clonar los submodulos (frontend y backend) del repositorio.
 
 ```bash
 sh ./build.sh
