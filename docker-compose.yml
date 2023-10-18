@@ -27,6 +27,19 @@ services:
       - newsletter
     depends_on:
       - database
+
+  cron:
+    build: ./backend
+    command: bash -c "npm run cron"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/var/www/html
+    networks:
+      - newsletter
+    depends_on:
+      - database
+      - backend
   
   database:
     image: mysql:8.1.0
